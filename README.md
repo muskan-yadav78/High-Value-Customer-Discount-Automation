@@ -1,6 +1,6 @@
 # High-Value Customer Discount Automation
 
-An automated n8n workflow designed to reward high-value customers. When an order is placed, the workflow checks the total price. If the order total exceeds ₹100, the customer is automatically emailed a 10% discount code for their next purchase. Otherwise, they receive a standard thank-you email.
+An automated n8n workflow designed to reward high-value customers. When an order is placed, the workflow checks the total price. If the order total exceeds ₹100, the customer is automatically emailed a 10% discount code for their next purchase.
 
 ## Workflow Diagram
 
@@ -13,7 +13,6 @@ Here is the visual representation of the automation workflow built in n8n:
 1. **Webhook Trigger**: Listens for incoming HTTP POST requests containing order details (such as `email` and `total_price`).
 2. **If Condition**: Evaluates if the order value is greater than 100 (`total_price > 100`).
 3. **Send Discount Email (True)**: Sends a specialized email using Gmail with a discount code (`THANKYOU10`) to customers who spent over ₹100.
-4. **Send Thank-You Email (False)**: Sends a standard purchase confirmation and thank-you email.
 
 ## Email Example
 
