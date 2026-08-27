@@ -72,29 +72,6 @@
           "name": "Gmail account"
         }
       }
-    },
-    {
-      "parameters": {
-        "sendTo": "={{ $json.body.email }}",
-        "subject": "Thank you for your order!",
-        "message": "<h2>Thank you for your purchase!</h2>  <p>We appreciate your order and hope you enjoy your products.</p>  <p>Thank you for shopping with us!</p>  <p>Best regards,<br> n8n Test Store</p>",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.2,
-      "position": [
-        448,
-        96
-      ],
-      "id": "03dfa03a-4ea9-44e9-a0a2-385f6fd20c1d",
-      "name": "Send a message1",
-      "webhookId": "7bf6e0c8-5ece-4ed1-9bd0-e55db8b1f759",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "l1ALUC6wsSUOBN0A",
-          "name": "Gmail account"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -115,13 +92,6 @@
         [
           {
             "node": "Send a message",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send a message1",
             "type": "main",
             "index": 0
           }
