@@ -1,0 +1,145 @@
+{
+  "name": "High Value Customer Discount Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f56beae6-d9ed-422e-b244-414504629ba0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "514ed8f4-33d1-40b7-8960-8a356ec42280",
+      "name": "Webhook",
+      "webhookId": "f56beae6-d9ed-422e-b244-414504629ba0"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d853cf4f-4df1-48e3-8ae6-0148283a1aa2",
+              "leftValue": "={{ Number($json.body.total_price) }}",
+              "rightValue": 100,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "f0df60e8-11ce-41fc-9bc9-5cd3de57c004",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.email }}",
+        "subject": "🎉 You earned a 10% discount!",
+        "message": "<h2>Thank you for your order!</h2>  <p>Your order value is over ₹100, so you've earned a <strong>10% discount</strong> on your next purchase.</p>  <p>Your discount code is:</p>  <h2>THANKYOU10</h2>  <p>Use this code on your next order.</p>  <p>Thank you for shopping with us!</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        -96
+      ],
+      "id": "70d36ebb-88d1-4a9b-9b16-cc86a18c48be",
+      "name": "Send a message",
+      "webhookId": "1b120229-030b-4068-8dba-73df4c275e34",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "l1ALUC6wsSUOBN0A",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.email }}",
+        "subject": "Thank you for your order!",
+        "message": "<h2>Thank you for your purchase!</h2>  <p>We appreciate your order and hope you enjoy your products.</p>  <p>Thank you for shopping with us!</p>  <p>Best regards,<br> n8n Test Store</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        96
+      ],
+      "id": "03dfa03a-4ea9-44e9-a0a2-385f6fd20c1d",
+      "name": "Send a message1",
+      "webhookId": "7bf6e0c8-5ece-4ed1-9bd0-e55db8b1f759",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "l1ALUC6wsSUOBN0A",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "0c1a9745-9d0b-4314-901a-87a4d4a27849",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f2bd5822c3875a3adfef36e413e3edb30e25eb2420da6df56b7686cde555ee82"
+  },
+  "nodeGroups": [],
+  "id": "pqWVdsptIEvwTwTY",
+  "tags": []
+}
